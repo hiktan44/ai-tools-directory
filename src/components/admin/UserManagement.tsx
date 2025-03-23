@@ -189,7 +189,7 @@ export default function UserManagement({ userRole = 'admin' }: UserManagementPro
         hour: '2-digit',
         minute: '2-digit'
       }).format(date)
-    } catch (e) {
+    } catch (_) {
       return dateString
     }
   }

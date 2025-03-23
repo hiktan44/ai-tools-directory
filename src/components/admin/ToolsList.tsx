@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Product } from '@/data/products'
 import Image from 'next/image'
 import { Edit, Trash2, Star, Search, PlusCircle, ArrowUpDown, AlertTriangle } from 'lucide-react'
-import { hasPermission, Permission } from '@/data/permissions'
+import { hasPermission } from '@/data/permissions'
 
 interface ToolsListProps {
   tools: Product[]

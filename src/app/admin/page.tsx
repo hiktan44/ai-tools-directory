@@ -1,14 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import AdminDashboard from '@/components/admin/AdminDashboard'
 import AdminLogin from '@/components/admin/AdminLogin'
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const router = useRouter()
   
   useEffect(() => {
     // Gerçek uygulamada JWT veya oturum kontrolü yapılmalı
