@@ -1,26 +1,183 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 255, 255, 255; /* beyaz */
+  --foreground: 23, 23, 23; /* koyu gri */
+  --primary: 0, 102, 255; /* mavi */
+  --primary-light: 51, 133, 255; /* açık mavi */
+  --primary-dark: 0, 71, 179; /* koyu mavi */
+  --gray-light: 243, 244, 246; /* açık gri */
+  --gray-medium: 229, 231, 235; /* orta gri */
+  --gray-dark: 107, 114, 128; /* koyu gri */
+  --error: 239, 68, 68; /* kırmızı */
+  --success: 34, 197, 94; /* yeşil */
+  --warning: 234, 179, 8; /* sarı */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark mode değişkenleri */
+.dark {
+  --background: 18, 18, 18; /* çok koyu gri */
+  --foreground: 243, 244, 246; /* açık gri */
+  --primary: 51, 133, 255; /* açık mavi */
+  --primary-light: 102, 153, 255; /* daha açık mavi */
+  --primary-dark: 0, 102, 255; /* normal mavi */
+  --gray-light: 31, 41, 55; /* koyu gri */
+  --gray-medium: 55, 65, 81; /* orta-koyu gri */
+  --gray-dark: 156, 163, 175; /* açık-orta gri */
+  --error: 248, 113, 113; /* açık kırmızı */
+  --success: 74, 222, 128; /* açık yeşil */
+  --warning: 250, 204, 21; /* açık sarı */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base stilleri */
+@layer base {
+  body {
+    @apply antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold dark:text-white;
+  }
+
+  p, li, span, a {
+    @apply dark:text-gray-300;
+  }
+
+  /* Input alanları için yüksek kontrast */
+  input, textarea, select {
+    @apply bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-black dark:text-white;
+  }
+
+  /* Butonlar için yüksek kontrast */
+  button:not(.custom-button) {
+    @apply text-white bg-primary hover:bg-primary-dark dark:hover:bg-primary-light;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Yararlı utility sınıfları */
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 shadow rounded-lg p-6 transition-colors;
+  }
+
+  .input {
+    @apply w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white;
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-md transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark dark:hover:bg-primary-light;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 dark:hover:bg-red-500;
+  }
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+/* Etkileyici hover efektleri */
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 15px rgba(var(--primary), 0.5);
+  transform: translateY(-2px);
 }
