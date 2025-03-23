@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-on-netlify",
     "start": "next start",
     "lint": "next lint",
     "deploy": "netlify deploy --prod"
@@ -29,7 +28,6 @@
     "eslint-config-next": "15.2.3",
     "find-cache-dir": "^5.0.0",
     "netlify-cli": "^19.0.3",
-    "next-on-netlify": "^3.0.1",
     "typescript": "^5"
   }
 }

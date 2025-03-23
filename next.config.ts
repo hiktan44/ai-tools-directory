@@ -11,11 +11,10 @@ const nextConfig: NextConfig = {
         pathname: '**',
       },
     ],
-    unoptimized: process.env.NODE_ENV === 'production',
   },
-  // Netlify uyumluluğu için
-  trailingSlash: true,
-  // Daha toleranslı build
+  // Netlify için gerekli ayarlar
+  output: 'standalone',
+  // Hata toleranslı build
   typescript: {
     ignoreBuildErrors: true,
   },
